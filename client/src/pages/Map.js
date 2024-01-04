@@ -84,6 +84,11 @@ function Mapbox(props) {
         centreCoords
         zoom
       }
+      landmark {
+        coords
+        name
+        range
+      }
     }
   `
 
