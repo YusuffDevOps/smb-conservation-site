@@ -1,10 +1,9 @@
 import mapboxgl, {GeolocateControl} from '!mapbox-gl'
-import Geolocation from '!mapbox-gl'
 import {useEffect, useRef} from 'react'
 import {useQuery, gql} from '@apollo/client'
 import 'mapbox-gl/dist/mapbox-gl.css'
-
 import {CoordPair} from '../utils/coordinates'
+import AnimatedPopup from 'mapbox-gl-animated-popup';
 
 const toCoordArray = coords => {
   return coords
@@ -84,7 +83,7 @@ function Mapbox(props) {
         centreCoords
         zoom
       }
-      landmark {
+      landmarks {
         coords
         name
         range
@@ -130,6 +129,19 @@ function Mapbox(props) {
       console.log(`${pos.coords.latitude} ${pos.coords.longitude}`)
     })
     map.current.addControl(new mapboxgl.NavigationControl(), 'top-left')
+
+    new AnimatedPopup({
+      openingAnimation: {
+          duration: 1000,
+          easing: 'easeOutElastic',
+          transform: 'scale'
+      },
+      closingAnimation: {
+          duration: 300,
+          easing: 'easeInBack',
+          transform: 'scale'
+      }
+  }).setLngLat([-63.595779, 44.6553]).setHTML('Hello World!').addTo(map.current); // example of popup, remove this later
 
     map.current.on('load', () => trails.forEach(trail => addLayers(trail, map.current)))
     map.current.resize()
