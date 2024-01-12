@@ -68,6 +68,27 @@ const addLayers = (trail, map) => {
   })
 }
 
+const createLandmark = (landmark) => {
+  const coords = CoordPair.fromString(landmark.coords).toInvArray()
+
+  return new AnimatedPopup({
+    openingAnimation: {
+        duration: 1000,
+        easing: 'easeOutElastic',
+        transform: 'scale'
+    },
+    closingAnimation: {
+        duration: 300,
+        easing: 'easeInBack',
+        transform: 'scale'
+    },
+    options: {
+      closeOnMove: false,
+      closeOnClick: false
+    }
+  }).setLngLat(coords).setHTML(landmark.content)
+}
+
 function Mapbox(props) {
   mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN
 
@@ -84,8 +105,9 @@ function Mapbox(props) {
         zoom
       }
       landmarks {
-        coords
         name
+        content
+        coords
         range
       }
     }
@@ -105,6 +127,7 @@ function Mapbox(props) {
     const zoom = data?.map?.zoom
     const scaledZoom = zoom - Math.log2(992 / mapContainer.current.clientWidth) // scale relative to 992 pixels (full map width)
     const trails = data?.trails
+    const landmarks = data?.landmarks
 
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
@@ -130,20 +153,10 @@ function Mapbox(props) {
     })
     map.current.addControl(new mapboxgl.NavigationControl(), 'top-left')
 
-    new AnimatedPopup({
-      openingAnimation: {
-          duration: 1000,
-          easing: 'easeOutElastic',
-          transform: 'scale'
-      },
-      closingAnimation: {
-          duration: 300,
-          easing: 'easeInBack',
-          transform: 'scale'
-      }
-  }).setLngLat([-63.595779, 44.6553]).setHTML('Hello World!').addTo(map.current); // example of popup, remove this later
-
-    map.current.on('load', () => trails.forEach(trail => addLayers(trail, map.current)))
+    map.current.on('load', () => {
+      trails.forEach(trail => addLayers(trail, map.current))
+      landmarks.forEach(landmark => createLandmark(landmark).addTo(map.current))
+    })
     map.current.resize()
   }, [data])
 

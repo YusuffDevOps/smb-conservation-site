@@ -371,6 +371,7 @@ var lists = {
     access: import_access.allowAll,
     fields: {
       name: (0, import_fields.text)({ validation: { isRequired: true } }),
+      content: (0, import_fields.text)({ validation: { isRequired: true } }),
       coords: (0, import_fields.text)({ validation: { isRequired: true } }),
       range: (0, import_fields.float)({ validation: { isRequired: true } })
     }

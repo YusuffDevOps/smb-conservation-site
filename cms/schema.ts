@@ -351,6 +351,7 @@ export const lists: Lists = {
     access: allowAll,
     fields: {
       name: text({validation: {isRequired: true}}),
+      content: text({validation: {isRequired: true}}),
       coords: text({validation: {isRequired: true}}),
       range: float({validation: {isRequired: true}})
     }

@@ -960,6 +960,7 @@ input MailRecipientCreateInput {
 type Landmark {
   id: ID!
   name: String
+  content: String
   coords: String
   range: Float
 }
@@ -974,6 +975,7 @@ input LandmarkWhereInput {
   NOT: [LandmarkWhereInput!]
   id: IDFilter
   name: StringFilter
+  content: StringFilter
   coords: StringFilter
   range: FloatFilter
 }
@@ -981,12 +983,14 @@ input LandmarkWhereInput {
 input LandmarkOrderByInput {
   id: OrderDirection
   name: OrderDirection
+  content: OrderDirection
   coords: OrderDirection
   range: OrderDirection
 }
 
 input LandmarkUpdateInput {
   name: String
+  content: String
   coords: String
   range: Float
 }
@@ -998,6 +1002,7 @@ input LandmarkUpdateArgs {
 
 input LandmarkCreateInput {
   name: String
+  content: String
   coords: String
   range: Float
 }
