@@ -374,6 +374,16 @@ var lists = {
       content: (0, import_fields.text)({ validation: { isRequired: true } }),
       coords: (0, import_fields.text)({ validation: { isRequired: true } }),
       image: (0, import_fields.image)({ storage: "localImages" }),
+      urlId: (0, import_fields.text)({
+        label: "URL ID",
+        validation: {
+          isRequired: true,
+          match: {
+            regex: /^[a-z\-]*$/,
+            explanation: "URL ID must only contain lowercase letters, hypens, and no spaces"
+          }
+        }
+      }),
       range: (0, import_fields.float)({ validation: { isRequired: true } })
     }
   })

@@ -354,6 +354,16 @@ export const lists: Lists = {
       content: text({validation: {isRequired: true}}),
       coords: text({validation: {isRequired: true}}),
       image: image({storage: 'localImages'}),
+      urlId: text({
+        label: 'URL ID',
+        validation: {
+          isRequired: true,
+          match: {
+            regex: /^[a-z\-]*$/,
+            explanation: 'URL ID must only contain lowercase letters, hypens, and no spaces'
+          }
+        }
+      }),
       range: float({validation: {isRequired: true}})
     }
   })

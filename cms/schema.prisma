@@ -171,5 +171,6 @@ model Landmark {
   image_width     Int?
   image_height    Int?
   image_id        String?
+  urlId           String  @default("")
   range           Float
 }
