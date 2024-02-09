@@ -353,6 +353,7 @@ export const lists: Lists = {
       name: text({validation: {isRequired: true}}),
       content: text({validation: {isRequired: true}}),
       coords: text({validation: {isRequired: true}}),
+      image: image({storage: 'localImages'}),
       range: float({validation: {isRequired: true}})
     }
   })

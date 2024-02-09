@@ -373,6 +373,7 @@ var lists = {
       name: (0, import_fields.text)({ validation: { isRequired: true } }),
       content: (0, import_fields.text)({ validation: { isRequired: true } }),
       coords: (0, import_fields.text)({ validation: { isRequired: true } }),
+      image: (0, import_fields.image)({ storage: "localImages" }),
       range: (0, import_fields.float)({ validation: { isRequired: true } })
     }
   })

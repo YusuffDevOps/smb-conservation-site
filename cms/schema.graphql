@@ -962,6 +962,7 @@ type Landmark {
   name: String
   content: String
   coords: String
+  image: ImageFieldOutput
   range: Float
 }
 
@@ -992,6 +993,7 @@ input LandmarkUpdateInput {
   name: String
   content: String
   coords: String
+  image: ImageFieldInput
   range: Float
 }
 
@@ -1004,6 +1006,7 @@ input LandmarkCreateInput {
   name: String
   content: String
   coords: String
+  image: ImageFieldInput
   range: Float
 }
 

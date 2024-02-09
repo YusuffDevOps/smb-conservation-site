@@ -162,9 +162,14 @@ model MailRecipient {
 }
 
 model Landmark {
-  id      String @id @default(cuid())
-  name    String @default("")
-  content String @default("")
-  coords  String @default("")
-  range   Float
+  id              String  @id @default(cuid())
+  name            String  @default("")
+  content         String  @default("")
+  coords          String  @default("")
+  image_filesize  Int?
+  image_extension String?
+  image_width     Int?
+  image_height    Int?
+  image_id        String?
+  range           Float
 }
