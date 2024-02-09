@@ -963,6 +963,7 @@ type Landmark {
   content: String
   coords: String
   image: ImageFieldOutput
+  urlId: String
   range: Float
 }
 
@@ -978,6 +979,7 @@ input LandmarkWhereInput {
   name: StringFilter
   content: StringFilter
   coords: StringFilter
+  urlId: StringFilter
   range: FloatFilter
 }
 
@@ -986,6 +988,7 @@ input LandmarkOrderByInput {
   name: OrderDirection
   content: OrderDirection
   coords: OrderDirection
+  urlId: OrderDirection
   range: OrderDirection
 }
 
@@ -994,6 +997,7 @@ input LandmarkUpdateInput {
   content: String
   coords: String
   image: ImageFieldInput
+  urlId: String
   range: Float
 }
 
@@ -1007,6 +1011,7 @@ input LandmarkCreateInput {
   content: String
   coords: String
   image: ImageFieldInput
+  urlId: String
   range: Float
 }
 
