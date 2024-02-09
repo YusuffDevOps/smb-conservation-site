@@ -86,7 +86,7 @@ const createLandmark = (landmark) => {
       closeOnMove: false,
       closeOnClick: false
     }
-  }).setLngLat(coords).setHTML(landmark.content)
+  }).setLngLat(coords).setHTML(`<h1 style="font-size:25px;" >${landmark.name}</h1><br><p>${landmark.content}</p>`)
 }
 
 function Mapbox(props) {
