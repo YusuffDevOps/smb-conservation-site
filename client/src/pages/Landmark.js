@@ -5,21 +5,18 @@ import {FaMapPin} from 'react-icons/fa'
 
 import Page from '../components/Page'
 
-function Product() {
+function Landmark() {
   const {id} = useParams()
 
   const query = gql`
-    query Products($where: ProductWhereInput!) {
-      products(where: $where, take: 1) {
-        title
-        isService
+    query Landmarks($where: LandmarkWhereInput!) {
+      landmarks(where: $where, take: 1) {
+        content
+        coords
         image {
           url
         }
-        source
-        description {
-          document
-        }
+        name
       }
     }
   `
@@ -32,32 +29,30 @@ function Product() {
     return null
   }
 
-  const product = data?.products[0]
-  const {title, isService, image, source, description} = product
+  const landmark = data?.landmarks[0]
+  const {content, coords, image, name} = landmark
 
   return (
-    <Page name={title}>
+    <Page name={name}>
       <div className="flex flex-col lg:flex-row gap-8">
         <div className="flex-1 prose">
           <div className="mb-4">
-            <Link className="text-blue-600 font-bold no-underline hover:underline" to={`/products-services`}>
-              &lsaquo; Back to Products & Services
+            <Link className="text-blue-600 font-bold no-underline hover:underline" to={`/map`}>
+              &lsaquo; Back to Map
             </Link>
           </div>
-          {!isService && (
-            <div className="font-bold">
-              <FaMapPin className="inline" />
-              &nbsp;Source: {source}
-            </div>
-          )}
-          <DocumentRenderer document={description.document} />
+          <div className="font-bold">
+            <FaMapPin className="inline" />
+            &nbsp;Coordinates: ${coords}
+          </div>
+          <div>${content}</div>
         </div>
         <div className="flex-1">
-          <img src={image.url} alt={title} />
+          <img src={image.url} alt={name} />
         </div>
       </div>
     </Page>
   )
 }
 
-export default Product
+export default Landmark
